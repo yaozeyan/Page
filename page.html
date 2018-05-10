@@ -1,0 +1,30 @@
+<script>
+    var pageIndex = 0;
+    var pageSize = 9;
+    var pageTotal = $(".dia-ul li").length;
+    var pageCount = parseInt((pageTotal + pageSize - 1) / pageSize);
+    $("#lBtn").click(function(){
+      if(pageIndex<1)return;
+      pageIndex--;
+      page();
+    });
+    $("#rBtn").click(function(){
+      if(pageIndex==pageCount-1)return;
+      pageIndex++;
+      page();
+    });
+    function page(){
+      $(".dia-ul li").each(function(i){
+        if(i>=(pageIndex*pageSize)&&i<((pageIndex+1)*pageSize)){
+          $(this).show();
+        }else{
+          $(this).hide();
+        }
+      });
+      pageText();
+    }
+    function pageText(){
+      $(".page-num").html((pageIndex+1)+"/"+pageCount);
+    }
+    page();
+</script>
